@@ -3,7 +3,7 @@ errors
 For replacement offical package of `errors`
 
 
-#### `main.go`
+#### example
 ```go
 package errors
 
