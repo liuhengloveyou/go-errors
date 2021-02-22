@@ -1,10 +1,3 @@
-errors
-======
-For replacement offical package of `errors`
-
-
-#### `main.go`
-```go
 package errors
 
 import (
@@ -23,13 +16,3 @@ func TestAll(t *testing.T) {
 
 	fmt.Println(ErrParseTest2.Code, ErrParseTest2.Error())
 }
-
-
-```
-
-#### example output
-```bash
-$ go-errors git:(main) ✗ go test
-10001 hello world aaa
-10002 10002 test error
-```
