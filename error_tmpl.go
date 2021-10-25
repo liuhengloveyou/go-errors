@@ -13,25 +13,25 @@ type ErrTemplate struct {
 	template string
 }
 
-func TN(code int, template string) ErrTemplate {
+func TN(code int, template string) *ErrTemplate {
 	key := fmt.Sprintf("%d", code)
 	if _, exist := errCodeDefined[key]; exist {
 		strErr := fmt.Sprintf("error code %s already exist", key)
 		panic(strErr)
 	}
 
-	errCodeDefined[key] = true
+	errT := &ErrTemplate{code: code, template: template}
+	errCodeDefined[key] = errT
 
-	return ErrTemplate{code: code, template: template}
+	return errT
 }
 
 func (p *ErrTemplate) New(v ...Params) (err error) {
 	params := Params{}
-	if v != nil {
-		for _, param := range v {
-			for pn, pv := range param {
-				params[pn] = pv
-			}
+
+	for _, param := range v {
+		for pn, pv := range param {
+			params[pn] = pv
 		}
 	}
 
